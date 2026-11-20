@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Bank Dashboard</title>
+    <link rel="stylesheet" href="assest/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>🏦 ABC Bank</h1>
+            <p>Banking for a Better Tomorrow</p>
+        </div>
+
+        <nav>
+            <a href="index.html" class="active">🏠 Dashboard</a>
+            <a href="account.html">💳 Accounts</a>
+            <a href="transactions.html">⇄ Transactions</a>
+            <a href="payments.html">💸 Payments</a>
+            <a href="services.html">⚙ Services</a>
+            <a href="offers.html">🎁 Offers</a>
+            <a href="support.html">🎧 Support</a>
+            <a href="#" onclick="logout()">↪ Logout</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            Secure • Simple • Smart
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="header">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+            <input type="text" id="search"
+                placeholder="🔍 Search transactions..."
+                onkeyup="searchTransactions()">
+
+            <div class="profile">
+                <span>🔔</span>
+                <div class="avatar">V</div>
+                <strong>Vaibhav Jadhav</strong>
+            </div>
+        </header>
+
+        <!-- Welcome -->
+        <section class="welcome">
+            <div>
+                <h1>Welcome Back, Vaibhav!</h1>
+                <p>Here's your banking overview</p>
+            </div>
+            <div class="date" id="date"></div>
+        </section>
+
+        <!-- Account Cards -->
+        <section class="account-cards" id="accounts">
+
+            <div class="account-card savings">
+                <div class="card-icon">💳</div>
+                <div>
+                    <h3>Savings Account</h3>
+                    <h2>₹42,750.00</h2>
+                    <p>Available Balance</p>
+                </div>
+            </div>
+
+            <div class="account-card current">
+                <div class="card-icon">💵</div>
+                <div>
+                    <h3>Current Account</h3>
+                    <h2>₹18,230.00</h2>
+                    <p>Available Balance</p>
+                </div>
+            </div>
+
+            <div class="account-card fixed">
+                <div class="card-icon">🐷</div>
+                <div>
+                    <h3>Fixed Deposit</h3>
+                    <h2>₹1,00,000.00</h2>
+                    <p>Maturity: 12 Jul 2027</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Transactions and Actions -->
+        <section class="middle-section">
+
+            <div class="transactions" id="transactions">
+
+                <div class="section-heading">
+                    <h2>⇄ Recent Transactions</h2>
+                    <button onclick="showAllTransactions()">View All →</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="transactionBody">
+                            <tr>
+                                <td>17 Nov 2026</td>
+                                <td>UPI - Google Pay</td>
+                                <td class="debit">- ₹500.00</td>
+                                <td><span class="success">Successful</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>16 Nov 2026</td>
+                                <td>Salary Credit</td>
+                                <td class="credit">+ ₹45,000.00</td>
+                                <td><span class="success">Successful</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>14 Nov 2026</td>
+                                <td>Electricity Bill</td>
+                                <td class="debit">- ₹1,250.00</td>
+                                <td><span class="success">Successful</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>12 Nov 2026</td>
+                                <td>Online Shopping</td>
+                                <td class="debit">- ₹2,499.00</td>
+                                <td><span class="success">Successful</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>10 Nov 2026</td>
+                                <td>Money Transfer</td>
+                                <td class="credit">+ ₹5,000.00</td>
+                                <td><span class="success">Successful</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions" id="payments">
+                <h2>⚡ Quick Actions</h2>
+
+                <div class="actions-grid">
+                    <button onclick="quickAction('Send Money')">
+                        <span>➤</span>Send Money
+                    </button>
+
+                    <button onclick="quickAction('Scan & Pay')">
+                        <span>▦</span>Scan & Pay
+                    </button>
+
+                    <button onclick="quickAction('Recharge')">
+                        <span>📱</span>Recharge
+                    </button>
+
+                    <button onclick="quickAction('Bill Payment')">
+                        <span>📄</span>Bill Payment
+                    </button>
+
+                    <button onclick="quickAction('Check Balance')">
+                        <span>💳</span>Check Balance
+                    </button>
+
+                    <button onclick="quickAction('More Services')">
+                        <span>•••</span>More
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Bottom Section -->
+        <section class="bottom-section">
+
+            <div class="security-banner" id="services">
+                <h2>Secure Your Account</h2>
+                <p>Enable Two-Factor Authentication<br>
+                    for extra security</p>
+                <button onclick="enableSecurity()">Enable Now →</button>
+            </div>
+
+            <div class="overview">
+                <div class="section-heading">
+                    <h2>📊 Account Overview</h2>
+                    <button onclick="alert('Demo statement')">View Statement →</button>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="accountChart"></canvas>
+
+                    <div class="chart-labels">
+                        <p>🔵 Savings Account - 60%</p>
+                        <p>🟢 Current Account - 25%</p>
+                        <p>🟣 Fixed Deposit - 15%</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 ABC Bank | All Rights Reserved
+        </footer>
+
+    </main>
+</div>
+
+<script src="assest/js/main.js"></script>
+</body>
+</html>

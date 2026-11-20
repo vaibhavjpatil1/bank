@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers | MyBank</title>
+
+    <link rel="stylesheet" href="assest/css/style.css">
+    <link rel="stylesheet" href="assest/css/offers.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">My<span>Bank</span></div>
+
+        <nav class="menu">
+            <a href="index.html">🏠 Dashboard</a>
+            <a href="account.html">💳 Accounts</a>
+            <a href="transactions.html">📊 Transactions</a>
+            <a href="payments.html">💸 Payments</a>
+            <a href="services.html">🛠️ Services</a>
+            <a href="offers.html" class="active">🎁 Offers</a>
+            <a href="support.html">🎧 Support</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙️ Settings</a>
+            <a href="#" onclick="logout()">🚪 Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+            <div>
+                <h2>Offers & Rewards</h2>
+                <p>Discover exclusive banking offers</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">VJ</div>
+                <span>Vaibhav Jadhav</span>
+            </div>
+        </header>
+
+        <!-- Banner -->
+        <section class="offer-banner">
+            <div>
+                <span class="banner-tag">SPECIAL REWARDS</span>
+                <h1>Great Deals. Bigger Savings.</h1>
+                <p>Explore exciting offers and rewards available in our demo banking portal.</p>
+                <button onclick="document.getElementById('offersSection').scrollIntoView({behavior:'smooth'})">
+                    Explore Offers →
+                </button>
+            </div>
+
+            <div class="banner-image">🎁</div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="offer-stats">
+
+            <div class="offer-stat-card">
+                <div class="stat-icon">🎁</div>
+                <div>
+                    <p>Available Offers</p>
+                    <h2 id="totalOffers">0</h2>
+                </div>
+            </div>
+
+            <div class="offer-stat-card">
+                <div class="stat-icon">🏆</div>
+                <div>
+                    <p>Claimed Offers</p>
+                    <h2 id="claimedOffers">0</h2>
+                </div>
+            </div>
+
+            <div class="offer-stat-card">
+                <div class="stat-icon">💰</div>
+                <div>
+                    <p>Reward Categories</p>
+                    <h2 id="totalCategories">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Available Offers -->
+        <section class="offers-section" id="offersSection">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Explore Offers</h2>
+                    <p>Find the best deals for your banking needs.</p>
+                </div>
+            </div>
+
+            <div class="offer-filters">
+
+                <input
+                    type="text"
+                    id="offerSearch"
+                    placeholder="Search offers..."
+                    oninput="displayOffers()"
+                >
+
+                <select id="offerCategory" onchange="displayOffers()">
+                    <option value="All">All Categories</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Food">Food & Dining</option>
+                    <option value="Banking">Banking</option>
+                    <option value="Entertainment">Entertainment</option>
+                </select>
+
+            </div>
+
+            <div class="offer-grid" id="offerGrid"></div>
+
+        </section>
+
+        <!-- Claimed Offers -->
+        <section class="claimed-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Claimed Offers</h2>
+                    <p>Your saved coupon codes and rewards.</p>
+                </div>
+            </div>
+
+            <div class="claimed-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Offer</th>
+                            <th>Coupon Code</th>
+                            <th>Category</th>
+                            <th>Claimed Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="claimedTable"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="assest/js/main.js"></script>
+<script src="assest/js/offers.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Services | MyBank</title>
+
+    <link rel="stylesheet" href="assest/css/style.css">
+    <link rel="stylesheet" href="assest/css/services.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">My<span>Bank</span></div>
+
+        <nav class="menu">
+            <a href="index.html">🏠 Dashboard</a>
+            <a href="account.html">💳 Accounts</a>
+            <a href="transactions.html">📊 Transactions</a>
+            <a href="payments.html">💸 Payments</a>
+            <a href="services.html" class="active">🛠️ Services</a>
+            <a href="offers.html">🎁 Offers</a>
+            <a href="support.html">🎧 Support</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙️ Settings</a>
+            <a href="#" onclick="logout()">🚪 Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+            <div>
+                <h2>Banking Services</h2>
+                <p>Explore our banking services</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">VJ</div>
+                <span>Vaibhav Jadhav</span>
+            </div>
+        </header>
+
+        <!-- Welcome Banner -->
+        <section class="services-banner">
+            <div>
+                <h1>Banking Made Simple</h1>
+                <p>Explore services designed to make your banking easier.</p>
+                <button onclick="document.getElementById('servicesList').scrollIntoView({behavior:'smooth'})">
+                    Explore Services
+                </button>
+            </div>
+            <div class="banner-icon">🏦</div>
+        </section>
+
+        <!-- Service Statistics -->
+        <section class="service-stats">
+
+            <div class="stat-card">
+                <span>🛠️</span>
+                <div>
+                    <p>Available Services</p>
+                    <h2 id="totalServices">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span>📄</span>
+                <div>
+                    <p>My Applications</p>
+                    <h2 id="totalApplications">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <span>⏳</span>
+                <div>
+                    <p>Pending Applications</p>
+                    <h2 id="pendingApplications">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Services -->
+        <section class="services-section" id="servicesList">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Our Services</h2>
+                    <p>Choose a service to get started.</p>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="service-filters">
+
+                <input
+                    type="text"
+                    id="serviceSearch"
+                    placeholder="Search services..."
+                    oninput="displayServices()"
+                >
+
+                <select id="serviceCategory" onchange="displayServices()">
+                    <option value="All">All Categories</option>
+                    <option value="Accounts">Accounts</option>
+                    <option value="Cards">Cards</option>
+                    <option value="Loans">Loans</option>
+                    <option value="Digital Banking">Digital Banking</option>
+                </select>
+
+            </div>
+
+            <div class="service-grid" id="serviceGrid"></div>
+
+        </section>
+
+        <!-- My Applications -->
+        <section class="applications-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Applications</h2>
+                    <p>Track your submitted service requests.</p>
+                </div>
+            </div>
+
+            <div class="applications-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>Service Name</th>
+                            <th>Customer Name</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="applicationTable"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<!-- Application Modal -->
+<div class="modal" id="applicationModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Apply for Service</h2>
+            <button class="close-btn" onclick="closeApplicationForm()">×</button>
+        </div>
+
+        <form id="applicationForm">
+
+            <input type="hidden" id="serviceName">
+
+            <label>Selected Service</label>
+            <input type="text" id="selectedService" readonly>
+
+            <label>Full Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name" required>
+
+            <label>Email Address</label>
+            <input type="email" id="customerEmail" placeholder="Enter your email" required>
+
+            <label>Mobile Number</label>
+            <input
+                type="tel"
+                id="customerMobile"
+                placeholder="Enter 10-digit mobile number"
+                pattern="[6-9][0-9]{9}"
+                maxlength="10"
+                required
+            >
+
+            <label>Additional Details</label>
+            <textarea id="additionalDetails" rows="3"
+                placeholder="Enter additional details (optional)"></textarea>
+
+            <div class="form-buttons">
+                <button type="button" class="cancel-btn" onclick="closeApplicationForm()">
+                    Cancel
+                </button>
+
+                <button type="submit" class="submit-btn">
+                    Submit Application
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script src="assest/js/main.js"></script>
+<script src="assest/js/services.js"></script>
+
+</body>
+</html>
